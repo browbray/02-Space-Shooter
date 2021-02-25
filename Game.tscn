@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Nebula.jpg" type="Texture" id=1]
+[ext_resource path="res://player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Player.png" type="Texture" id=3]
+[ext_resource path="res://Enemy/Enemies.gd" type="Script" id=4]
+[ext_resource path="res://HUD/Game.gd" type="Script" id=5]
+[ext_resource path="res://HUD/HUD.gd" type="Script" id=6]
+[ext_resource path="res://Meteors.gd" type="Script" id=7]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -178.798, -117.112 ]
+}
+
+[node name="backgorund" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="weapons" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Meteors" type="Node2D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+collision_layer = 2147483650
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+position = Vector2( 521, 500 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+position = Vector2( 521, 500 )
+scale = Vector2( 0.15, 0.15 )
+polygon = PoolVector2Array( 25.5, -300.9, 25.5, -298.7, 34.5, -288.8, 34.5, -286.5, 47.5, -264.5, 47.5, -261.4, 59.5, -230.4, 59.5, -226, 70.5, -185.3, 70.5, -179.4, 74.5, -161.2, 74.5, -119.4, 78.8, -123, 87.5, -123, 87.5, -121, 103.5, -108, 103.5, -105.7, 106.5, -101.7, 106.5, -83.9, 116.5, -71.7, 116.5, 10.9, 109.5, 16.9, 109.5, 56.2, 116.5, 63.2, 116.5, 142.7, 117.5, 145, 117.5, 197, 116.2, 197, 107.2, 204, 103.5, 204, 74.5, 204.9, 74.5, 228.2, 71.9, 239.1, 79.5, 258.6, 79.5, 280, 78, 280, 73.1, 301, 71.6, 301, 63.8, 315, 36.9, 315, 33.5, 310.7, 33.5, 307.9, 34.4, 294, 27.3, 280, 17.4, 280, 16.4, 312, 14.5, 312, 12.1, 315, -8.5, 315, -14.5, 307.7, -14.5, 280, -21.7, 280, -29.5, 292.5, -29.5, 314, -31.4, 314, -32.1, 315, -58.5, 315, -67.5, 301.6, -67.5, 298.3, -75.5, 272.3, -75.5, 265.8, -72.1, 249, -70.7, 249, -67.5, 242.5, -67.5, 237.3, -70.5, 228.3, -70.5, 205, -103.9, 205, -113.5, 201.4, -113.5, 199.8, -117.5, 195.8, -117.5, 148.8, -114.5, 139.7, -114.5, 61, -112.3, 61, -107.5, 56.2, -107.5, 17.8, -114.5, 10.8, -114.5, -74, -112.4, -74, -104.5, -83.7, -104.5, -104, -102.5, -104, -90.5, -120, -87.8, -120, -76.5, -123.8, -76.5, -121, -70.5, -116.8, -70.5, -162.2, -58.1, -222, -57, -222, -46, -259, -44.8, -259, -29.8, -290, -28.6, -290, -20.6, -302, -19.4, -302, -5.5, -314.9, 9.5, -315 )
+
+[node name="HUD" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+margin_top = 560.0
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.501961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="HUD"]
+margin_left = 10.0
+margin_top = 560.0
+margin_right = 53.0
+margin_bottom = 600.0
+text = "Score:"
+valign = 1

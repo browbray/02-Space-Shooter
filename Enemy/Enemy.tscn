@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Enemy1.png" type="Texture" id=2]
+
+[node name="Enemy" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 165.696, 200 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 165.696, 107.834 )
+scale = Vector2( 0.3, 0.3 )
+polygon = PoolVector2Array( 135, -146.7, 135, -145.6, 138, -143.6, 138, -138.3, 136.6, -132.5, 135.5, -132.5, 115, -64.2, 115, -61, 129.4, -35.5, 125.7, -35.5, 97.2, -9.7, 102, -2.10001, 102, 21.7, 171, 78.9, 171, 144.1, 170.9, 146.5, 169, 146.5, 166, 150.5, 121, 150.5, 74, 97.3, 74, 93, 88, 68.8, 78.9, 79.5, 71.4, 79.5, 69.2, 78.2, 71.2, 103.5, 69.1, 103.5, 67.1, 106.5, 42, 106.5, 42, 104.6, 39, 102.6, 39, 74.5, 41.2, 74.5, 43, 72.7, 43, 62.5, 41.3, 62.5, 27.8, 51.9, 26.1, 54.5, -27, 54.5, -27, 52.6, -43, 62.6, -43, 72.5, -39, 75.5, -39, 102.3, -43.2, 106.5, -66.8, 106.5, -71, 102.3, -71, 79.3, -80, 79.5, -80, 77.3, -86.8, 70.5, -72.8, 98.5, -76.1, 98.5, -118.1, 148.5, -119, 148.5, -120.5, 150.5, -164.9, 150.5, -167, 150.2, -167, 148.5, -171, 145.5, -171, 136.5, -171, 79.5, -102, 22.6, -102, -2.2, -96, -10.2, -128, -36.5, -128, -40.1, -115, -61.1, -115, -64.2, -138, -138.2, -138, -143.6, -126.2, -150.5, -110, -150.5, -110, -148, -93.9, -121.5, -60.2, -121.5, -47, -108.3, -47, -62.6, -25, -48.6, -25, -46.5, -18.4, -65.5, -14, -65.5, 16, -66.5, 16, -64.7, 22, -61.7, 22, -57.9, 25.2, -48.7, 47, -62.6, 47, -108.3, 59.1, -121.5, 93.9, -121.5, 110.6, -150.5, 128.1, -150.5 )
+
+[node name="shoot" type="Timer" parent="."]
+autostart = true
+
+[node name="move" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="timeout" from="shoot" to="." method="_on_shoot_timeout"]
+[connection signal="timeout" from="move" to="." method="_on_move_timeout"]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
